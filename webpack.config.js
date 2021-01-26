@@ -1,24 +1,25 @@
-const webpack = require('webpack')
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, "./dist"),
+    // contentBase: path.resolve(__dirname, './dist'),
+    watchContentBase: true,
     open: true,
     compress: true,
     hot: true,
-    port: 8080,
+    port: 8080
   },
   entry: {
-    main: path.resolve(__dirname, "./src/index.js"),
+    main: path.resolve(__dirname, './src/js/index.js')
   },
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].bundle.js'
   },
 
   module: {
@@ -27,26 +28,21 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-      // Images
-      {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: "asset/resource",
+        use: ['babel-loader']
       },
       {
         test: /\.(scss|css)$/,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
-      },
-    ],
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Calendar meet",
-      template: path.resolve(__dirname, "./src/index.html"), // шаблон
-      filename: "index.html", // название выходного файла
+      title: 'Calendar meet',
+      template: path.resolve(__dirname, './src/index.html'), // шаблон
+      filename: 'index.html' // название выходного файла
     }),
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
