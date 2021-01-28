@@ -23,7 +23,13 @@ function createTable() {
   const tableBody = document.getElementById('tableBody');
 
   table.time.map((time) => {
-    tableBody.innerHTML += `<td>${time}</td>`;
+    days.map(day => {
+      if(table[day].filter((objEvent => objEvent.time === time))) {
+        tableBody.innerHTML += `<td>${time}</td>`;
+      }else {
+        tableBody.innerHTML += `<td></td>`;
+      }
+    })
   });
   days.map((day) => {
     tableHead.innerHTML += `<th>${day}</th>`;
