@@ -1,5 +1,5 @@
 import '../styles/main.scss';
-import { eventPopup } from './render/event-popup';
+import { renderCalendar } from './render/render-calendar';
 
 const root = document.getElementById('root');
-root.append(eventPopup());
+root.append(renderCalendar());

@@ -1,0 +1,11 @@
+
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+
+    &__btn {
+        margin-right: 20px;
+    }
+}
