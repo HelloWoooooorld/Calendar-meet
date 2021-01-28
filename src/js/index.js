@@ -1,5 +1,5 @@
 import '../styles/main.scss';
-import { renderCalendar } from './render/render-calendar';
+import createTable from './render/render-calendar';
 
-const root = document.getElementById('root');
-root.append(renderCalendar());
+// const root = document.getElementById('root');
+createTable();
