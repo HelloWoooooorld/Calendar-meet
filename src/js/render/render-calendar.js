@@ -1,4 +1,4 @@
-const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
 const table = {
   time: [
     '10:00',
@@ -9,31 +9,37 @@ const table = {
     '15:00',
     '16:00',
     '17:00',
-    '18:00'
+    '18:00',
   ],
   monday: [{ time: '10:00', user: 'Maria', title: 'One to one' }],
   tuesday: [],
   wednesday: [],
   thursday: [],
-  friday: []
-};
-
-
-function createTable() {
-  const tableHead = document.getElementById('tableHead');
-  const tableBody = document.getElementById('tableBody');
-
-  table.time.map(time => {
-    days.map(day => {
-       if(table[day].filter(item => item.time === time)) {
-        tableBody.innerHTML += `<tr><td/>${time}</td></tr>`;
-       }
-    })
-  })
-  
-  days.map((day) => {
-    tableHead.innerHTML += `<th>${day}</th>`;
-  });
+  friday: [],
 }
 
-export default createTable;
+function createTable() {
+  const tableHead = document.getElementById('tableHead')
+  const tableBody = document.getElementById('tableBody')
+
+  table.time.map((time) => {
+    days.map((day) => {
+      table[day].filter((item) =>
+        item.time === time
+          ? (tableBody.innerHTML += `<tr><td/>${item.title}</td></tr>`)
+          : (tableBody.innerHTML += `<tr><td/></td></tr>`)
+      )
+    })
+  })
+
+  table.time.map(time => {
+    tableBody.innerHTML += `<tr><td/>${time}</td></tr>`
+  })
+
+  days.map((day) => {
+    tableHead.innerHTML += `<th>${day}</th>`
+  })
+
+}
+
+export default createTable
