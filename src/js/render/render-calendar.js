@@ -1,4 +1,4 @@
-const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 const table = {
   time: [
     '10:00',
@@ -11,11 +11,11 @@ const table = {
     '17:00',
     '18:00'
   ],
-  monday: [{ time: '10:00', user: 'Maria', title: 'One to one' }, { time: '12:00', user: 'Maria', title: 'One to one' }],
-  tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one' }],
-  wednesday: [],
-  thursday: [],
-  friday: []
+  Monday: [{ time: '10:00', user: 'Maria', title: 'One to one' }, { time: '12:00', user: 'Maria', title: 'One to one' }],
+  Tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one' }],
+  Wednesday: [],
+  Thursday: [],
+  Friday: []
 };
 
 function createTable() {
