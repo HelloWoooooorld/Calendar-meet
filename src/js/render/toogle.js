@@ -9,8 +9,10 @@ document.querySelector('.popup__btn--no').addEventListener('click', () => {
   toogle();
 });
 
-table.onclick = function() {
+table.onclick = function(event) {
+  let target = event.target;
+  if (target.tagName !== 'TD') return;
   toogle();
-}
+};
 
 export default toogle();

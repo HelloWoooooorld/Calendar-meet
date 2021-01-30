@@ -14,6 +14,8 @@ th {
   width: 200px;
   height: 50px;
   border: 1px solid black;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .header {
@@ -44,7 +46,7 @@ th {
     font-size: 18px;
   }
 
-  &__btn--item {
+  &__btn--yes, &__btn--no {
     width: 100px;
     height: 50px;
     text-transform: uppercase;

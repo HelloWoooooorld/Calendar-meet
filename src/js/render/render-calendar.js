@@ -26,7 +26,7 @@ function createTable() {
   table.time.map((time) => {
     let row = document.createElement('tr');
     tableBody.append(row);
-    row.innerHTML += `<td>${time}</td>`;
+    row.innerHTML += `<th>${time}</th>`;
     // eslint-disable-next-line array-callback-return
     days.map((day) => {
       // eslint-disable-next-line no-return-assign
