@@ -4,8 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= htmlWebpackPlugin.options.newEvent %></title>
+  <title>
+    <%= htmlWebpackPlugin.options.newEvent %>
+  </title>
 </head>
+
 <body>
   <header class="header">
     <h1 class="header__title">Calendar</h1>
@@ -21,9 +24,8 @@
   </header>
   <main class='main' id="root">
 
-    
-    <table>
-      <thead >
+    <table id='table'>
+      <thead>
         <tr id='tableHead'>
           <th>Name</th>
         </tr>

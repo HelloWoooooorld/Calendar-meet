@@ -12,7 +12,7 @@ const table = {
     '18:00'
   ],
   monday: [{ time: '10:00', user: 'Maria', title: 'One to one' }, { time: '12:00', user: 'Maria', title: 'One to one' }],
-  tuesday: [],
+  tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one' }],
   wednesday: [],
   thursday: [],
   friday: []
@@ -21,22 +21,22 @@ const table = {
 function createTable() {
   const tableHead = document.getElementById('tableHead');
   const tableBody = document.getElementById('tableBody');
+
+  // eslint-disable-next-line array-callback-return
   table.time.map((time) => {
     let row = document.createElement('tr');
     tableBody.append(row);
+    row.innerHTML += `<td>${time}</td>`;
+    // eslint-disable-next-line array-callback-return
     days.map((day) => {
       // eslint-disable-next-line no-return-assign
       table[day].filter((item) => item.time === time
         ? (row.innerHTML += `<td/>${item.title}</td>`)
-        // eslint-disable-next-line quotes
-        : (row.innerHTML += `<td/></td>`));
+        : (row.innerHTML += ''));
     });
   });
 
-  table.time.map(time => {
-    tableBody.innerHTML += `<tr><td/>${time}</td></tr>`;
-  });
-
+  // eslint-disable-next-line array-callback-return
   days.map((day) => {
     tableHead.innerHTML += `<th>${day}</th>`;
   });
