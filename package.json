@@ -30,6 +30,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "choices.js": "^9.0.1",
     "eslint-config-airbnb-base": "^14.2.1"
   }
 }

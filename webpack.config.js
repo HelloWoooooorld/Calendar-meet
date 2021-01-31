@@ -42,6 +42,11 @@ module.exports = {
       template: path.resolve(__dirname, './src/index.html'), // шаблон
       filename: 'index.html' // название выходного файла
     }),
+    // new HtmlWebpackPlugin({
+    //   title: 'New event',
+    //   template: path.resolve(__dirname, './src/new-event.html'), // шаблон
+    //   filename: 'index.html' // название выходного файла
+    // }),
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
