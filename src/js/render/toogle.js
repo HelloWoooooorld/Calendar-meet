@@ -8,7 +8,6 @@ function toogle() {
 document.querySelector('.popup__btn--no').addEventListener('click', () => {
   toogle();
 });
-
 // eslint-disable-next-line func-names
 table.onclick = function (event) {
   let target = event.target;

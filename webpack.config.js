@@ -7,7 +7,6 @@ module.exports = {
   mode: 'development',
   devServer: {
     historyApiFallback: true,
-    // contentBase: path.resolve(__dirname, './dist'),
     watchContentBase: true,
     open: true,
     compress: true,
@@ -39,14 +38,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Calendar meet',
-      template: path.resolve(__dirname, './src/index.html'), // шаблон
-      filename: 'index.html' // название выходного файла
+      template: path.resolve(__dirname, './src/view/index.html') // шаблон
     }),
-    // new HtmlWebpackPlugin({
-    //   title: 'New event',
-    //   template: path.resolve(__dirname, './src/new-event.html'), // шаблон
-    //   filename: 'index.html' // название выходного файла
-    // }),
+    new HtmlWebpackPlugin({
+      title: 'New event',
+      template: path.resolve(__dirname, './src/view/new-event.html'), // шаблон
+      filename: 'new-event.html' // название выходного файла
+    }),
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
