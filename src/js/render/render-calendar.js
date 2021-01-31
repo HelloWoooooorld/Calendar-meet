@@ -11,33 +11,32 @@ const table = {
     '17:00',
     '18:00'
   ],
-  Monday: [{ time: '10:00', user: 'Maria', title: 'One to one' }, { time: '12:00', user: 'Maria', title: 'One to one' }],
-  Tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one' }],
+  Monday: [{ time: '10:00', user: 'Maria', title: 'One to one 1' }, { time: '12:00', user: 'Maria', title: 'One to one 2' }],
+  Tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one 3' }],
   Wednesday: [],
   Thursday: [],
-  Friday: []
+  Friday: [{ time: '18:00', user: 'Maria', title: 'One to one 5' }]
 };
 
 function createTable() {
   const tableHead = document.getElementById('tableHead');
   const tableBody = document.getElementById('tableBody');
 
-  // eslint-disable-next-line array-callback-return
-  table.time.map((time) => {
+  table.time.forEach((time) => {
     let row = document.createElement('tr');
     tableBody.append(row);
     row.innerHTML += `<th>${time}</th>`;
-    // eslint-disable-next-line array-callback-return
-    days.map((day) => {
-      // eslint-disable-next-line no-return-assign
-      table[day].filter((item) => item.time === time
-        ? (row.innerHTML += `<td/>${item.title}</td>`)
-        : (row.innerHTML += ''));
+    days.forEach((day) => {
+      const eventInDay = table[day].filter(eventObj => eventObj.time === time);
+      if (eventInDay.length >= 0 && eventInDay[0]) {
+        row.innerHTML += `<td>${eventInDay[0].title}</td>`;
+      } else {
+        row.innerHTML += '<td></td>';
+      }
     });
   });
 
-  // eslint-disable-next-line array-callback-return
-  days.map((day) => {
+  days.forEach((day) => {
     tableHead.innerHTML += `<th>${day}</th>`;
   });
 }
