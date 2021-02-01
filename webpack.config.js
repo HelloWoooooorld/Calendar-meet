@@ -5,22 +5,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  devServer: {
-    historyApiFallback: true,
-    watchContentBase: true,
-    open: true,
-    compress: true,
-    hot: true,
-    port: 8080
-  },
   entry: {
-    main: path.resolve(__dirname, './src/js/index.js')
+    main: path.resolve(__dirname, './src/js/index.js'),
+    newEvent: path.resolve(__dirname, './src/js/newEvent.js')
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js'
   },
-
   module: {
     rules: [
       // JavaScript
@@ -34,6 +26,14 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    watchContentBase: true,
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8080
   },
   plugins: [
     new HtmlWebpackPlugin({
