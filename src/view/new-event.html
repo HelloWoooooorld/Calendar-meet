@@ -10,10 +10,14 @@
 
 <body>
     <div class="event">
+        <div class="event__error">
+            <p class="event__mgs">Failed to create an event. Time slot already is booked</p>
+            <button class="event__btn--error">&#x2613;</button>
+        </div>
         <div class="event__input">
             <form class='event__form' action="#">
                 <label for="nameEvent">Add name event</label>
-                <input name="nameEvent" id="nameEvent" type="text" />
+                <input name="nameEvent" id="nameEvent" type="text" required/>
                 <label for="days">Choose a day:</label>
                 <select class="event__select" name="days" id="days">
                     <option value="Monday">Monday</option>
@@ -45,7 +49,7 @@
         </div>
         <div class="event__buttons">
             <button class="event__btn"><a href="./index.html">Cancel</a></button>
-            <button class="event__btn"><a href="./index.html">Create</a></button>
+            <button class="event__btn event__btn--submit" type="submit"><a href="./index.html">Create</a></button>
         </div>
     </div>
 </body>

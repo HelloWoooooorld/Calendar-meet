@@ -1,5 +1,5 @@
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-const table = {
+export const table = {
   time: [
     '10:00',
     '11:00',
