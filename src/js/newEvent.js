@@ -26,6 +26,16 @@ function showError() {
   });
 }
 
+function saveData(obj) {
+  let values = JSON.parse(localStorage.getItem('data'));
+  if (values === null) {
+    values = [];
+  }
+  values.push(obj);
+  localStorage.setItem('data', JSON.stringify(values));
+  console.log(localStorage.getItem('data'));
+}
+
 function getData(e) {
   e.preventDefault();
   let inputData = new FormData(form[0]);
@@ -39,7 +49,8 @@ function getData(e) {
   };
 
   if (isEmpty(data)) {
-    console.log(data);
+    saveData(data);
+    console.log('done');
   } else {
     showError();
   }
