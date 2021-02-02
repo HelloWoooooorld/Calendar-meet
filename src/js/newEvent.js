@@ -39,13 +39,12 @@ function saveData(obj) {
 function getData(e) {
   e.preventDefault();
   let inputData = new FormData(form[0]);
-  let selectData = new FormData(form[0]);
   const participants = choice.getValue();
   let data = {
-    time: selectData.get('time'),
+    time: inputData.get('time'),
     user: participants,
     title: inputData.get('nameEvent'),
-    day: selectData.get('days')
+    day: inputData.get('days')
   };
 
   if (isEmpty(data)) {
