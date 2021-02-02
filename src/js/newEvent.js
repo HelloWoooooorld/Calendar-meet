@@ -33,7 +33,6 @@ function saveData(obj) {
   }
   values.push(obj);
   localStorage.setItem('data', JSON.stringify(values));
-  console.log(localStorage.getItem('data'));
 }
 
 function getData(e) {
@@ -49,7 +48,6 @@ function getData(e) {
 
   if (isEmpty(data)) {
     saveData(data);
-    console.log('done');
   } else {
     showError();
   }
