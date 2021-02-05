@@ -1,6 +1,5 @@
 import '../../node_modules/choices.js/public/assets/styles/choices.min.css';
 import { choice } from './render/multiselect';
-// import { table } from './render/render-calendar';
 
 const form = document.querySelectorAll('.event__form');
 const submit = document.querySelector('.event__btn--submit');
@@ -35,8 +34,7 @@ function saveData(obj) {
   localStorage.setItem('data', JSON.stringify(values));
 }
 
-function getData(e) {
-  e.preventDefault();
+function getData() {
   let inputData = new FormData(form[0]);
   const participants = choice.getValue();
   let data = {
@@ -54,3 +52,8 @@ function getData(e) {
 }
 
 submit.addEventListener('click', getData, false);
+
+// class Form {
+
+//   events() {}
+// }
