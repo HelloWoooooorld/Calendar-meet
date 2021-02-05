@@ -1,16 +1,24 @@
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const times = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
 class Table {
   constructor(localStorageProp, mockTable) {
     this.localStorageProp = localStorageProp;
-    this.table = JSON.parse(localStorage.getItem(this.localStorageProp)) || mockTable;
-    this.log();
+    this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
+    if (this.table === null) {
+      this.table = mockTable;
+      localStorage.setItem(this.localStorageProp, JSON.stringify(mockTable));
+    }
   }
 
   add(text) {
-    this.table.data.push(text);
-    localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
-    this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
-    this.log();
+    return new Promise((resolve, reject) => {
+      this.log(this.table.data);
+      this.table.data.push(text);
+      localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
+      this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
+      if (error) reject(this.log(error));
+      resolve(this.table);
+    });
   }
 
   remove(text) {
@@ -19,13 +27,15 @@ class Table {
     localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
   }
 
-  log() {
+  // eslint-disable-next-line class-methods-use-this
+  log(msg) {
+    console.log(msg);
   }
 
   render() {
     const tableHead = document.getElementById('tableHead');
     const tableBody = document.getElementById('tableBody');
-    this.table.data.time.forEach((time) => {
+    times.forEach((time) => {
       let row = document.createElement('tr');
       tableBody.append(row);
       row.innerHTML += `<th>${time}</th>`;
@@ -46,19 +56,8 @@ class Table {
 
 const table = new Table('data', {
   data: {
-    time: [
-      '10:00',
-      '11:00',
-      '12:00',
-      '13:00',
-      '14:00',
-      '15:00',
-      '16:00',
-      '17:00',
-      '18:00'
-    ],
     Monday: [{ time: '10:00', user: 'Maria', title: 'One to one 1' }, { time: '12:00', user: 'Maria', title: 'One to one 2' }],
-    Tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one 3' }],
+    Tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one 121' }],
     Wednesday: [],
     Thursday: [],
     Friday: [{ time: '18:00', user: 'Maria', title: 'One to one 5' }]
