@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import toogle from '../render/toogle';
+
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 const times = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
 class Table {
@@ -8,12 +11,14 @@ class Table {
       this.table = mockTable;
       localStorage.setItem(this.localStorageProp, JSON.stringify(mockTable));
     }
+    console.log(this.table);
   }
 
   add(text) {
-    this.log(this.table.data);
-    this.table.data.push(text);
-    localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
+    console.log(this.table.data);
+    this.log(text);
+    this.table.data[text.day].push(text);
+    localStorage.setItem('data', JSON.stringify(this.table));
     this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
   }
 
@@ -61,6 +66,7 @@ class Table {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 const table = new Table('data', {
   data: {
     Monday: [{ time: '10:00', user: 'Maria', title: 'One to one 1' }, { time: '12:00', user: 'Jonh', title: 'One to one 2' }],
@@ -70,8 +76,5 @@ const table = new Table('data', {
     Friday: [{ time: '18:00', user: 'Anastasia', title: 'One to one 5' }]
   }
 });
-
-table.render();
-table.filter();
 
 export default Table;
