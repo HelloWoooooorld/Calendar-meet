@@ -1,23 +1,12 @@
 import { choice } from './render/multiselect';
 import '../../node_modules/choices.js/public/assets/styles/choices.min.css';
-import Table from './render/renderCalendar.js';
-const table = new Table();
-export default class Form {
-  static isEmpty(obj, exclude = null) {
-    // eslint-disable-next-line no-param-reassign
-    obj = Object.assign({}, obj);
-    // eslint-disable-next-line no-restricted-syntax
-    for (let key in obj) {
-      // eslint-disable-next-line no-continue
-      if (exclude && exclude.includes(key)) continue;
-      if (obj[key] == null || obj[key] === '') return false;
-    }
-    return true;
-  }
 
+const forms = document.querySelectorAll('.event__form');
+const submit = document.querySelector('.event__btn--submit');
+const errorBody = document.querySelector('.event__error');
+const closeBtn = document.querySelector('.event__btn--error');
+class Form {
   static showError() {
-    const errorBody = document.querySelector('.event__error');
-    const closeBtn = document.querySelector('.event__btn--error');
     errorBody.style.display = 'flex';
     closeBtn.addEventListener('click', () => {
       errorBody.style.display = 'none';
@@ -25,30 +14,37 @@ export default class Form {
   }
 
   getData() {
-    const form = document.querySelectorAll('.event__form');
-    let inputData = new FormData(form[0]);
+    let inputData = new FormData(forms[0]);
     const participants = choice.getValue();
-    let data = {
+    const data = {
       time: inputData.get('time'),
       user: participants,
       title: inputData.get('nameEvent'),
       day: inputData.get('days')
     };
-    this.log(data);
-    if (this.isEmpty(data)) {
-      table.add(data);
+
+    if (this.emptyCheck(data)) {
+      console.log('not empty');
     } else {
       this.showError();
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  log(msg) {
+  // eslint-disable-next-line consistent-return
+  emptyCheck(value) {
+    if (Object.keys(this.value).length === 0 && value.constructor === Object) { return true; }
+  }
+
+  static log(msg) {
     console.log(msg);
   }
-}
-const form = new Form();
-form.log('HUYTA');
 
-const submit = document.querySelector('.event__btn--submit');
-submit.addEventListener('click', form.getData(), false);
+  event() {
+    submit.addEventListener('click', this.getData, false);
+  }
+}
+
+const form = new Form();
+form.event();
+
+export default Form;

@@ -11,14 +11,10 @@ class Table {
   }
 
   add(text) {
-    return new Promise((resolve, reject) => {
-      this.log(this.table.data);
-      this.table.data.push(text);
-      localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
-      this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
-      if (error) reject(this.log(error));
-      resolve(this.table);
-    });
+    this.log(this.table.data);
+    this.table.data.push(text);
+    localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
+    this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
   }
 
   remove(text) {
