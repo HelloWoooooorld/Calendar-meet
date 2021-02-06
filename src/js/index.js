@@ -1,9 +1,8 @@
 import '../styles/main.scss';
 // eslint-disable-next-line no-unused-vars
-import Table from './render/renderCalendar';
+import table from './render/renderCalendar';
 // eslint-disable-next-line no-unused-vars
-
-const table = new Table();
-
+// eslint-disable-next-line no-unused-vars
+import toogle from './render/toogle';
 table.render();
 table.filter();

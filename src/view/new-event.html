@@ -11,7 +11,7 @@
 <body>
     <div class="event">
         <div class="event__error">
-            <p class="event__mgs">Failed to create an event. Time slot already is booked</p>
+            <p class="event__mgs"></p>
             <button class="event__btn--error">&#x2613;</button>
         </div>
         <div class="event__input">
@@ -27,14 +27,14 @@
                     <option value="Friday">Friday</option>
                 </select>
                 <label for="participants">Choose a participants:</label>
-                <select class="event__select" name="participants" id="js-choice" multiple required>
+                <select class="event__select" name="participants" id="js-choice" multiple="multiple">
                     <option value="Bob">Bob</option>
                     <option value="Maria">Maria</option>
                     <option value="Anastasya">Anastasya</option>
                     <option value="Jonh">Jonh</option>
                 </select>
                 <label for="time">Choose a time:</label>
-                <select class="event__select" name="time" id="time" required>
+                <select class="event__select" name="time" id="time" >
                     <option value="10:00">10:00</option>
                     <option value="11:00">11:00</option>
                     <option value="12:00">12:00</option>
@@ -49,7 +49,7 @@
         </div>
         <div class="event__buttons">
             <button class="event__btn"><a href="./index.html">Cancel</a></button>
-            <button class="event__btn event__btn--submit" type="submit"><a >Create</a></button>
+            <button class="event__btn event__btn--submit" type="submit"><a class='submit__link' href="./index.html">Create</a></button>
         </div>
     </div>
 </body>
