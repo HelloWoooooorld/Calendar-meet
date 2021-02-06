@@ -27,8 +27,10 @@ class Table {
     const value = document.querySelector('.header__select');
     value.addEventListener('change', () => {
       let name = value.options[value.selectedIndex].text;
-      let data = this.table.data.filter(el => el.name === name);
-      this.log(data);
+      days.forEach((day) => {
+        const eventInDay = this.table.data[day].filter(eventObj => eventObj.user === `${name}`);
+        this.log(eventInDay);
+      });
     });
   }
 
@@ -61,11 +63,11 @@ class Table {
 
 const table = new Table('data', {
   data: {
-    Monday: [{ time: '10:00', user: 'Maria', title: 'One to one 1' }, { time: '12:00', user: 'Maria', title: 'One to one 2' }],
-    Tuesday: [{ time: '10:00', user: 'Maria', title: 'One to one 121' }],
+    Monday: [{ time: '10:00', user: 'Maria', title: 'One to one 1' }, { time: '12:00', user: 'Jonh', title: 'One to one 2' }],
+    Tuesday: [{ time: '10:00', user: 'Bob', title: 'One to one 121' }],
     Wednesday: [],
     Thursday: [],
-    Friday: [{ time: '18:00', user: 'Maria', title: 'One to one 5' }]
+    Friday: [{ time: '18:00', user: 'Anastasia', title: 'One to one 5' }]
   }
 });
 
