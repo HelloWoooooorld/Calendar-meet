@@ -23,6 +23,15 @@ class Table {
     localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
   }
 
+  filter() {
+    const value = document.querySelector('.header__select');
+    value.addEventListener('change', () => {
+      let name = value.options[value.selectedIndex].text;
+      let data = this.table.data.filter(el => el.name === name);
+      this.log(data);
+    });
+  }
+
   // eslint-disable-next-line class-methods-use-this
   log(msg) {
     console.log(msg);
@@ -38,7 +47,7 @@ class Table {
       days.forEach((day) => {
         const eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
         if (eventInDay.length >= 0 && eventInDay[0]) {
-          row.innerHTML += `<td>${eventInDay[0].title}</td>`;
+          row.innerHTML += `<td class='hasTitle'>${eventInDay[0].title}</td>`;
         } else {
           row.innerHTML += '<td></td>';
         }
@@ -61,5 +70,6 @@ const table = new Table('data', {
 });
 
 table.render();
+table.filter();
 
 export default Table;

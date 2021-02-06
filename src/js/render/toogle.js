@@ -14,7 +14,6 @@ document.querySelector('.popup__btn--no').addEventListener('click', () => {
 table.onclick = function (event) {
   let target = event.target;
   popupTitle.innerHTML = `Are you sure you want delete ${event.target.textContent} ?`;
-  console.log(event.target.textContent);
   if (target.tagName !== 'TD' || target.innerHTML === '') return;
   toogle();
 };

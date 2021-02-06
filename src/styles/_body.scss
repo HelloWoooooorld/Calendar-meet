@@ -11,8 +11,8 @@ body {
 
 td,
 th {
-  width: 200px;
-  height: 50px;
+  width: 245px;
+  height: 55px;
   border: 1px solid black;
   vertical-align: middle;
   text-align: center;
@@ -28,7 +28,37 @@ th {
     font-weight: 600;
   }
 
+  &__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__btn {
+    width: 100px;
+    height: 50px;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 20px;
+    transition: all 0.2s;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+      transform: scale(1.2);
+      background-color: lightblue;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+    }
+  }
+
+  &__btn > a {
+    color: #000;
+  }
+
+  &__select {
+    width: 200px;
+    height: 50px;
     margin-right: 20px;
   }
 }
@@ -68,5 +98,14 @@ th {
       color: #fff;
       border-radius: 5px;
     }
+  }
+}
+
+.hasTitle {
+  background-color: rgb(109, 175, 83);
+  cursor: pointer;
+  transition: all .2s;
+  &:hover {
+  background-color: rgb(116, 216, 76);
   }
 }

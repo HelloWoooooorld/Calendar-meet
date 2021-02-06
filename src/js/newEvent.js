@@ -32,7 +32,7 @@ class Form {
 
   // eslint-disable-next-line consistent-return
   emptyCheck(value) {
-    if (Object.keys(this.value).length === 0 && value.constructor === Object) { return true; }
+    if (Object.keys(value).length === 0 && value.constructor === Object) { return true; }
   }
 
   static log(msg) {
