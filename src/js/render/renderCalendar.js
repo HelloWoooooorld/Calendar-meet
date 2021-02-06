@@ -1,4 +1,5 @@
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+import { v4 as uuidv4 } from 'uuid';
+export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 const times = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
 class Table {
   constructor(localStorageProp, mockTable) {
@@ -18,7 +19,7 @@ class Table {
   }
 
   remove(text) {
-    const data = this.table.data.filter(el => el !== text);
+    const data = this.table.data.filter(el => el.title !== text);
     this.table.data = data;
     localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
   }
@@ -49,7 +50,7 @@ class Table {
       days.forEach((day) => {
         const eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
         if (eventInDay.length >= 0 && eventInDay[0]) {
-          row.innerHTML += `<td class='hasTitle'>${eventInDay[0].title}</td>`;
+          row.innerHTML += `<td id='${uuidv4()}' class='hasTitle'>${eventInDay[0].title}</td>`;
         } else {
           row.innerHTML += '<td></td>';
         }

@@ -1,6 +1,7 @@
 import { choice } from './render/multiselect';
 import '../../node_modules/choices.js/public/assets/styles/choices.min.css';
 import table from './render/renderCalendar';
+import { v4 as uuidv4 } from 'uuid';
 const forms = document.querySelectorAll('.event__form');
 const submit = document.querySelector('.event__btn--submit');
 const errorBody = document.querySelector('.event__error');
@@ -8,8 +9,8 @@ const closeBtn = document.querySelector('.event__btn--error');
 const eventMsg = document.querySelector('.event__mgs');
 const link = document.querySelector('.submit__link');
 
-link.removeAttribute('href');
 // eslint-disable-next-line consistent-return
+link.removeAttribute('href');
 
 function emptyCheck(value) {
   if (value.time.length !== 0
@@ -31,13 +32,15 @@ function showError(msg) {
 }
 
 function getData() {
+  link.removeAttribute('href');
   let inputData = new FormData(forms[0]);
   const participants = choice.getValue();
   const data = {
     time: inputData.get('time'),
     user: participants,
     title: inputData.get('nameEvent'),
-    day: inputData.get('days')
+    day: inputData.get('days'),
+    id: uuidv4()
   };
   if (emptyCheck(data)) {
     table.add(data);
