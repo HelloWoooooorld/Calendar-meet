@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+/* eslint-disable guard-for-in */
 export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 const times = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
 class Table {
@@ -19,9 +19,24 @@ class Table {
   }
 
   remove(text) {
-    const data = this.table.data.filter(el => el.title !== text);
-    this.table.data = data;
-    localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
+    this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
+    // eslint-disable-next-line no-restricted-syntax
+    for (let key in this.table.data) {
+      let obj = this.table.data[key];
+      // eslint-disable-next-line no-restricted-syntax
+      for (let prop in obj) {
+        if (obj[prop].title === text.title
+          && obj[prop].day === text.day
+          && obj[prop].time === text.time
+          && obj[prop].user === text.user) {
+          localStorage.removeItem(obj[prop]);
+          console.log('he is here');
+        } else {
+          console.log('no');
+        }
+        localStorage.setItem(this.localStorageProp, JSON.stringify(obj));
+      }
+    }
   }
 
   filter() {
@@ -50,7 +65,7 @@ class Table {
       days.forEach((day) => {
         const eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
         if (eventInDay.length >= 0 && eventInDay[0]) {
-          row.innerHTML += `<td id='${uuidv4()}' class='hasTitle'>${eventInDay[0].title}</td>`;
+          row.innerHTML += `<td class='hasTitle'>${eventInDay[0].title}</td>`;
         } else {
           row.innerHTML += '<td></td>';
         }
