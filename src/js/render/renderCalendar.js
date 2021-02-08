@@ -20,24 +20,9 @@ class Table {
 
   remove(object) {
     const data = JSON.parse(localStorage.getItem(this.localStorageProp));
-    console.log(data);
-    // eslint-disable-next-line no-restricted-syntax
-    for (let key in data.data) {
-      let obj = this.table.data[key];
-      // eslint-disable-next-line no-restricted-syntax
-      for (let prop in obj) {
-        if (obj[prop].id === object.id) {
-          Object.entries(data).map(item => {
-            Object.entries(item).map(val => {
-              console.log(val);
-            });
-          });
-          console.log(data);
-          localStorage.setItem(this.localStorageProp, JSON.stringify(data));
-          console.log('done');
-        }
-      }
-    }
+    Object.entries(data.data).map((item) => {
+      item[1].filter(val => val.id !== object.id);
+    });
   }
 
   filter() {
@@ -66,7 +51,7 @@ class Table {
       days.forEach((day) => {
         const eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
         if (eventInDay.length >= 0 && eventInDay[0]) {
-          row.innerHTML += `<td class='hasTitle'>${eventInDay[0].title}</td>`;
+          row.innerHTML += `<td id=${eventInDay[0].id} class='hasTitle'>${eventInDay[0].title}</td>`;
         } else {
           row.innerHTML += '<td></td>';
         }
