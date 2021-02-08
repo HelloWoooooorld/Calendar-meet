@@ -18,23 +18,24 @@ class Table {
     this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
   }
 
-  remove(text) {
-    this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
+  remove(object) {
+    const data = JSON.parse(localStorage.getItem(this.localStorageProp));
+    console.log(data);
     // eslint-disable-next-line no-restricted-syntax
-    for (let key in this.table.data) {
+    for (let key in data.data) {
       let obj = this.table.data[key];
       // eslint-disable-next-line no-restricted-syntax
       for (let prop in obj) {
-        if (obj[prop].title === text.title
-          && obj[prop].day === text.day
-          && obj[prop].time === text.time
-          && obj[prop].user === text.user) {
-          localStorage.removeItem(obj[prop]);
-          console.log('he is here');
-        } else {
-          console.log('no');
+        if (obj[prop].id === object.id) {
+          Object.entries(data).map(item => {
+            Object.entries(item).map(val => {
+              console.log(val);
+            });
+          });
+          console.log(data);
+          localStorage.setItem(this.localStorageProp, JSON.stringify(data));
+          console.log('done');
         }
-        localStorage.setItem(this.localStorageProp, JSON.stringify(obj));
       }
     }
   }

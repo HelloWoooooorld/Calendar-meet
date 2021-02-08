@@ -1,5 +1,6 @@
 import { choice } from './render/multiselect';
 import '../../node_modules/choices.js/public/assets/styles/choices.min.css';
+import { v4 as uuidv4 } from 'uuid';
 import table from './render/renderCalendar';
 const forms = document.querySelectorAll('.event__form');
 const submit = document.querySelector('.event__btn--submit');
@@ -38,7 +39,8 @@ function getData() {
     time: inputData.get('time'),
     user: participants,
     title: inputData.get('nameEvent'),
-    day: inputData.get('days')
+    day: inputData.get('days'),
+    id: uuidv4()
   };
   if (emptyCheck(data)) {
     table.add(data);
