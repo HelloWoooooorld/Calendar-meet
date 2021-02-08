@@ -21,10 +21,9 @@ class Table {
   remove(idx) {
     console.log(idx);
     days.forEach(day => {
-      const eventInDay = this.table.data[day].filter(eventObj => eventObj.id !== idx);
-      this.log(eventInDay);
-      localStorage.setItem('data', JSON.stringify(eventInDay));
+      this.table.data[day] = this.table.data[day].filter(eventObj => eventObj.id !== idx);
     });
+    localStorage.setItem('data', JSON.stringify(this.table));
   }
 
   filter() {
@@ -32,8 +31,9 @@ class Table {
     header.addEventListener('change', () => {
       let name = header.options[header.selectedIndex].text;
       days.forEach((day) => {
-        const eventInDay = this.table.data[day].filter(eventObj => eventObj.user[0].value === `${name}`);
-        this.log(eventInDay);
+        this.table.data[day] = this.table.data[day].filter(eventObj => eventObj.user[0].value === `${name}`);
+        localStorage.setItem('data', JSON.stringify(this.table));
+        this.render();
       });
     });
   }
@@ -46,6 +46,9 @@ class Table {
   render() {
     const tableHead = document.getElementById('tableHead');
     const tableBody = document.getElementById('tableBody');
+    while (tableBody.rows.length > 0) {
+      tableBody.deleteRow(0);
+    }
     times.forEach((time) => {
       let row = document.createElement('tr');
       tableBody.append(row);
@@ -59,6 +62,7 @@ class Table {
         }
       });
     });
+    tableHead.innerHTML = '<th>Name</th>';
     days.forEach((day) => {
       tableHead.innerHTML += `<th>${day}</th>`;
     });
