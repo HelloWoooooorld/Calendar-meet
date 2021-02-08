@@ -5,7 +5,7 @@ class Table {
   constructor(localStorageProp, mockTable) {
     this.localStorageProp = localStorageProp;
     this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
-    if (this.table === null) {
+    if (!this.table) {
       this.table = mockTable;
       localStorage.setItem(this.localStorageProp, JSON.stringify(mockTable));
     }
@@ -18,19 +18,21 @@ class Table {
     this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
   }
 
-  remove(object) {
-    const data = JSON.parse(localStorage.getItem(this.localStorageProp));
-    const obj = Object.entries(data.data)
-      .map((item) => item[1].filter(val => val.id !== object.id));
-    // localStorage.setItem(this.localStorageProp, JSON.stringify(obj));
+  remove(idx) {
+    console.log(idx);
+    days.forEach(day => {
+      const eventInDay = this.table.data[day].filter(eventObj => eventObj.id !== idx);
+      this.log(eventInDay);
+      localStorage.setItem('data', JSON.stringify(eventInDay));
+    });
   }
 
   filter() {
-    const value = document.querySelector('.header__select');
-    value.addEventListener('change', () => {
-      let name = value.options[value.selectedIndex].text;
+    const header = document.querySelector('.header__select');
+    header.addEventListener('change', () => {
+      let name = header.options[header.selectedIndex].text;
       days.forEach((day) => {
-        const eventInDay = this.table.data[day].filter(eventObj => eventObj.user === `${name}`);
+        const eventInDay = this.table.data[day].filter(eventObj => eventObj.user[0].value === `${name}`);
         this.log(eventInDay);
       });
     });

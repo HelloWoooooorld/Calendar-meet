@@ -28,8 +28,9 @@ allTable.onclick = function (event) {
   }
   popupYes.addEventListener('click', () => {
     const data = JSON.parse(localStorage.getItem('data'));
+    console.log(data.data, 'data.data');
     Object.entries(data.data).map((item) => item[1]
-      .filter(val => val.id === event.target.id ? table.remove(val) : console.log('null')));
+      .filter(val => val.id === event.target.id ? table.remove(val.id) : console.log('null')));
   });
 };
 
