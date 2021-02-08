@@ -21,22 +21,15 @@ popupYes.addEventListener('click', () => {
 
 // eslint-disable-next-line func-names
 allTable.onclick = function (event) {
-  toogle();
   let target = event.target;
-  popupTitle.innerHTML = `Are you sure you want delete ${event.target.textContent} ?`;
-  if (target.tagName !== 'TD' || target.textContent === '') return;
+  if (target.textContent !== '') {
+    toogle();
+    popupTitle.innerHTML = `Are you sure you want delete ${event.target.textContent} ?`;
+  }
   popupYes.addEventListener('click', () => {
     const data = JSON.parse(localStorage.getItem('data'));
-    // eslint-disable-next-line no-restricted-syntax
-    for (let key in data.data) {
-      let obj = data.data[key];
-      // eslint-disable-next-line no-restricted-syntax
-      for (let prop in obj) {
-        if (obj[prop].title === event.target.textContent) {
-          table.remove(obj[prop]);
-        }
-      }
-    }
+    Object.entries(data.data).map((item) => item[1]
+      .filter(val => val.id === event.target.id ? table.remove(val) : console.log('null')));
   });
 };
 

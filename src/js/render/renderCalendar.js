@@ -14,15 +14,15 @@ class Table {
   add(text) {
     this.log(text);
     this.table.data[text.day].push(text);
-    localStorage.setItem('data', JSON.stringify(this.table));
+    localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
     this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
   }
 
   remove(object) {
     const data = JSON.parse(localStorage.getItem(this.localStorageProp));
-    Object.entries(data.data).map((item) => {
-      item[1].filter(val => val.id !== object.id);
-    });
+    const obj = Object.entries(data.data)
+      .map((item) => item[1].filter(val => val.id !== object.id));
+    // localStorage.setItem(this.localStorageProp, JSON.stringify(obj));
   }
 
   filter() {
@@ -63,7 +63,6 @@ class Table {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 const table = new Table('data', {
   data: {
     Monday: [],
