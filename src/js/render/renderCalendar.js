@@ -31,10 +31,14 @@ class Table {
     const header = document.querySelector('.header__select');
     header.addEventListener('change', () => {
       let name = header.options[header.selectedIndex].text;
-      const userEvent = days.forEach((day) => {
-        this.table.data[day].filter(eventObj => eventObj.user[0].value === name ? console.log(eventObj) : console.log('null'));
+      days.forEach(day => {
+        const users = this.table.data[day]
+          .filter(item => item.user[0].value === `${name}`);
+        this.render(users);
       });
-      this.render(userEvent);
+
+      // eventObj.user[0].value
+      // this.render(userEvent);
     });
   }
 
@@ -44,14 +48,19 @@ class Table {
     tableHead.innerHTML = '<th>Name</th>';
   }
 
-  render(data = undefined) {
+  render(data) {
     this.clear();
     times.forEach((time) => {
       let row = document.createElement('tr');
       tableBody.append(row);
       row.innerHTML += `<th>${time}</th>`;
       days.forEach((day) => {
-        const eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
+        let eventInDay;
+        if (!data) {
+          eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
+        } else {
+          eventInDay = data;
+        }
         if (eventInDay.length >= 0 && eventInDay[0]) {
           row.innerHTML += `<td id=${eventInDay[0].id} class='hasTitle'>${eventInDay[0].title}</td>`;
         } else {

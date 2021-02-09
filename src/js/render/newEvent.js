@@ -31,6 +31,7 @@ function emptyCheck(value) {
 // }
 
 function showError(msg) {
+  link.removeAttribute('href');
   eventMsg.textContent = msg;
   errorBody.style.display = 'flex';
   closeBtn.addEventListener('click', () => {
