@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/jpg" href="../favicon.ico" />
-    <title>New event</title>
-</head>
-
-<body>
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" type="image/jpg" href="../favicon.ico" />
+      <title>New event</title>
+  </head>
+  <body>
     <div class="event">
-        <div class="event__error">
-            <p class="event__mgs"></p>
-            <button class="event__btn--error">&#x2613;</button>
-        </div>
-        <div class="event__input">
-            <form class='event__form' action="#">
-                <label for="nameEvent">Add name event:</label>
-                <input name="nameEvent" id="nameEvent" type="text" required/>
-                <label for="days">Choose a day:</label>
-                <select class="event__select" name="days" id="days" required>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                </select>
-                <label for="participants">Choose a participants:</label>
-                <select class="event__select" name="participants" id="js-choice" multiple="multiple">
-                    <option value="Bob">Bob</option>
-                    <option value="Maria">Maria</option>
-                    <option value="Anastasya">Anastasya</option>
-                    <option value="Jonh">Jonh</option>
-                </select>
-                <label for="time">Choose a time:</label>
-                <select class="event__select" name="time" id="time" >
-                    <option value="10:00">10:00</option>
-                    <option value="11:00">11:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="13:00">13:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="15:00">15:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="17:00">17:00</option>
-                    <option value="18:00">18:00</option>
-                </select>
-            </form>
-        </div>
-        <div class="event__buttons">
-            <button class="event__btn"><a href="./index.html">Cancel</a></button>
-            <button class="event__btn event__btn--submit" type="submit"><a class='submit__link' href="./index.html">Create</a></button>
-        </div>
+      <div class="event__error">
+          <p class="event__mgs"></p>
+          <button class="event__btn--error">&#x2613;</button>
+      </div>
+      <div class="event__input">
+        <form class='event__form' action="#">
+          <label for="nameEvent">Add name event:</label>
+          <input name="nameEvent" id="nameEvent" type="text" required/>
+          <label for="days">Choose a day:</label>
+          <select class="event__select" name="days" id="days" required>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+          </select>
+          <label for="participants">Choose a participants:</label>
+          <select class="event__select" name="participants" id="js-choice" multiple="select-multiple">
+            <option value="Bob">Bob</option>
+            <option value="Maria">Maria</option>
+            <option value="Anastasya">Anastasya</option>
+            <option value="Jonh">Jonh</option>
+          </select>
+          <label for="time">Choose a time:</label>
+          <select class="event__select" name="time" id="time" >
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+          </select>
+        </form>
+      </div>
+      <div class="event__buttons">
+        <button class="event__btn"><a href="./index.html">Cancel</a></button>
+        <button class="event__btn event__btn--submit" type="submit"><a class='submit__link' href="./index.html">Create</a></button>
+      </div>
     </div>
-</body>
+  </body>
 </html>

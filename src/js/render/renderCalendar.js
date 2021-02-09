@@ -14,14 +14,12 @@ class Table {
   }
 
   add(text) {
-    this.log(text);
     this.table.data[text.day].push(text);
     localStorage.setItem(this.localStorageProp, JSON.stringify(this.table));
     this.table = JSON.parse(localStorage.getItem(this.localStorageProp));
   }
 
   remove(idx) {
-    console.log(idx);
     days.forEach(day => {
       this.table.data[day] = this.table.data[day].filter(eventObj => eventObj.id !== idx);
     });
@@ -31,26 +29,13 @@ class Table {
 
   filter() {
     const header = document.querySelector('.header__select');
-
     header.addEventListener('change', () => {
       let name = header.options[header.selectedIndex].text;
-      let data = JSON.parse(localStorage.getItem(this.localStorageProp));
-
       days.forEach((day) => {
-        this.table.data[day] = this.table.data[day].filter(eventObj => eventObj.user[0].value === `${name}`);
-        localStorage.setItem('data', JSON.stringify(this.table.data[day]));
+        const userEvent = this.table.data[day].filter(eventObj => eventObj.user[0].value === name ? console.log(eventObj) : console.log('null'));
+        console.log(userEvent);
       });
-
-      if (name === 'all') {
-        localStorage.setItem('data', JSON.stringify(data));
-      }
-      this.render();
     });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  log(msg) {
-    console.log(msg);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -59,14 +44,16 @@ class Table {
     tableHead.innerHTML = '<th>Name</th>';
   }
 
-  render() {
+  render(data) {
     this.clear();
     times.forEach((time) => {
       let row = document.createElement('tr');
       tableBody.append(row);
       row.innerHTML += `<th>${time}</th>`;
       days.forEach((day) => {
-        const eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
+        const eventInDay = !undefined
+          ? this.table.data[day].filter(eventObj => eventObj.time === time)
+          : data;
         if (eventInDay.length >= 0 && eventInDay[0]) {
           row.innerHTML += `<td id=${eventInDay[0].id} class='hasTitle'>${eventInDay[0].title}</td>`;
         } else {
