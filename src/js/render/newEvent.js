@@ -23,13 +23,6 @@ function emptyCheck(value) {
   return false;
 }
 
-// function emptyPlace(obj) {
-//   const data = JSON.parse(localStorage.getItem('data'));
-//   console.log(data.data, 'data.data');
-//   Object.entries(data.data).map((item) => item[1]
-//     .filter(val => !!(val.time === obj.time || val.day === obj.day || val.user !== obj.user)));
-// }
-
 function showError(msg) {
   link.removeAttribute('href');
   eventMsg.textContent = msg;

@@ -11,6 +11,7 @@ class Table {
       this.table = mockTable;
       localStorage.setItem(this.localStorageProp, JSON.stringify(mockTable));
     }
+    // this.filter();
   }
 
   add(text) {
@@ -28,18 +29,19 @@ class Table {
   }
 
   filter() {
-    const header = document.querySelector('.header__select');
-    header.addEventListener('change', () => {
-      let name = header.options[header.selectedIndex].text;
-      days.forEach(day => {
-        const users = this.table.data[day]
-          .filter(item => item.user[0].value === `${name}`);
-        this.render(users);
-      });
+    const header = document.querySelector('.header__select')
+      .addEventListener('change', ({target, ...event}) => {
+        const selectedUser = target.options[target.selectedIndex].text;
 
-      // eventObj.user[0].value
-      // this.render(userEvent);
-    });
+        const selecedDataByUser = Object.keys(this.table.data).reduce((acc, current) => {
+          acc[current] = this.table.data[current].filter(item => {
+            return item.user.some(user => user.value === selectedUser);
+          });
+          return acc;
+        }, {});
+
+        return this.render(selecedDataByUser);
+      });
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -48,21 +50,15 @@ class Table {
     tableHead.innerHTML = '<th>Name</th>';
   }
 
-  render(data) {
+  render(data = this.table.data) {
     this.clear();
     times.forEach((time) => {
       let row = document.createElement('tr');
       tableBody.append(row);
       row.innerHTML += `<th>${time}</th>`;
       days.forEach((day) => {
-        let eventInDay;
-        if (!data) {
-          eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
-        } else {
-          eventInDay = data;
-        }
-        if (eventInDay.length >= 0 && eventInDay[0]) {
-          row.innerHTML += `<td id=${eventInDay[0].id} class='hasTitle'>${eventInDay[0].title}</td>`;
+        if (data[day].length && data[day][0].time === time) {
+          row.innerHTML += `<td id=${data[day][0].id} class='hasTitle'>${data[day][0].title}</td>`
         } else {
           row.innerHTML += '<td></td>';
         }
@@ -85,3 +81,15 @@ const table = new Table('data', {
 });
 
 export default table;
+/*
+if (!data) {
+  eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
+} else {
+  eventInDay = data;
+}
+if (eventInDay.length >= 0 && eventInDay[0]) {
+  row.innerHTML += `<td id=${eventInDay[0].id} class='hasTitle'>${eventInDay[0].title}</td>`;
+} else {
+  row.innerHTML += '<td></td>';
+}
+*/
