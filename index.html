@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/jpg" href="../favicon.ico"/>
+  <title>
+    Calendar meet
+  </title>
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="header__title">Calendar</h1>
+    <div class="header__controls">
+      <select class='header__select' name="users" id="users">
+        <option value="Maria">Maria</option>
+        <option value="Bob">Bob</option>
+        <option value="Jonh">Jonh</option>
+        <option value="Anastasya">Anastasya</option>
+      </select>
+      <button class="header__btn"><a href="./new-event.html">New event +</a></button>
+    </div>
+  </header>
+  <main class='main' id="root">
+    <div class="popup toogle__popup">
+      <p class="popup__title"></p>
+      <div class="popup__btn">
+        <button class="popup__btn popup__btn--yes">yes</button>
+        <button class="popup__btn popup__btn--no">no</button>
+      </div>
+    </div>
+    <table id='table'>
+      <thead>
+        <tr id='tableHead'>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody id='tableBody'>
+      </tbody>
+    </table>
+  </main>
+<script src="main.bundle.js"></script><script src="newEvent.bundle.js"></script></body>
+</html>
