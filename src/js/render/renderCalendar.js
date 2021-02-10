@@ -29,8 +29,10 @@ class Table {
   }
 
   filter() {
+    // eslint-disable-next-line no-unused-vars
     const header = document.querySelector('.header__select')
-      .addEventListener('change', ({target, ...event}) => {
+      // eslint-disable-next-line no-unused-vars
+      .addEventListener('change', ({ target, ...event }) => {
         const selectedUser = target.options[target.selectedIndex].text;
 
         const selecedDataByUser = Object.keys(this.table.data).reduce((acc, current) => {
@@ -58,7 +60,7 @@ class Table {
       row.innerHTML += `<th>${time}</th>`;
       days.forEach((day) => {
         if (data[day].length && data[day][0].time === time) {
-          row.innerHTML += `<td id=${data[day][0].id} class='hasTitle'>${data[day][0].title}</td>`
+          row.innerHTML += `<td id=${data[day][0].id} class='hasTitle'>${data[day][0].title}</td>`;
         } else {
           row.innerHTML += '<td></td>';
         }
@@ -81,15 +83,3 @@ const table = new Table('data', {
 });
 
 export default table;
-/*
-if (!data) {
-  eventInDay = this.table.data[day].filter(eventObj => eventObj.time === time);
-} else {
-  eventInDay = data;
-}
-if (eventInDay.length >= 0 && eventInDay[0]) {
-  row.innerHTML += `<td id=${eventInDay[0].id} class='hasTitle'>${eventInDay[0].title}</td>`;
-} else {
-  row.innerHTML += '<td></td>';
-}
-*/
